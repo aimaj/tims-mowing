@@ -1,0 +1,29 @@
+name: Validate
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Salesforce CLI
+      run: |
+          wget https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-amd64.tar.xz
+          mkdir sfdx-cli
+          tar xJf sfdx-linux-amd64.tar.xz -C sfdx-cli --strip-components 1
+          ./sfdx-cli/install
+
+    - name: 'Retrieve secret'
+      shell: bash
+      run: 'echo ${{ secrets.TARGET_SFDXURL}} > ./SFDX_URL_STORE.txt'
+
+    - name: 'Authenticate SFDX CLI'
+      run: 'sfdx force:auth:sfdxurl:store --sfdxurlfile=./SFDX_URL_STORE.txt --setalias=target'
+
+    - name: 'Validate source'
+      run: 'sfdx force:source:deploy -u target --checkonly -p force-app'
