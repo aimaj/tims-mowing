@@ -30,6 +30,11 @@
                 <default>false</default>
                 <label>Sporting</label>
             </value>
+            <value>
+                <fullName>Highway</fullName>
+                <default>false</default>
+                <label>Highway</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
