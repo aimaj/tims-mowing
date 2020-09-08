@@ -7,10 +7,18 @@
     </applicationVisibilities>
     <custom>true</custom>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Number_of_Bookings__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Booking__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>Account-Account Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Booking__c-Booking Layout</layout>
     </layoutAssignments>
